@@ -15,11 +15,7 @@ We recommend using nvim version `0.9.0` or later. This plugin is using
 server in your beloved editor.
 
 ### downloads
- 1. Download the server executable from the release assets
- ```bash
- wget -O ~/.local/bin/odoo_ls_server https://github.com/odoo/odoo-ls/releases/download/0.4.0/odoo_ls_server
- ```
- 2. Install the plugin
+ 1. Install the plugin
 
 Using [packer.nvim](https://github.com/wbthomason/packer.nvim)
 
@@ -45,8 +41,15 @@ return {
       dependencies = { 'neovim/nvim-lspconfig' }
     }
 ```
-### Optional downloads
- 1. downloads python [typeshed](https://github.com/python/typeshed) to enrich the server with builtin python package stubs
+
+ 2. Download the server executable from the release assets
+ ```bash
+ wget -O ~/.local/bin/odoo_ls_server https://github.com/odoo/odoo-ls/releases/download/0.4.0/odoo_ls_server
+ ```
+
+ 3. downloads python [typeshed](https://github.com/python/typeshed) to enrich the server with builtin python package stubs
+
+ (2. and 3. can be done automatically via the `Odools` [command](https://github.com/Whenrow/odoo-ls.nvim#usage))
 
 
 ## Configuration
@@ -60,9 +63,9 @@ odools.setup({
     -- mandatory
     odoo_path = h .. "/src/odoo/",
     python_path = h .. "/.pyenv/shims/python3",
-    server_path = h .. "/.local/bin/odoo_ls_server",
 
     -- optional
+    server_path = h .. "/.local/bin/odoo_ls_server",
     addons = {h .. "/src/enterprise/"},
     additional_stubs = {h .. "/src/additional_stubs/", h .. "/src/typeshed/stubs"},
     root_dir = h .. "/src/", -- working directory, odoo_path if empty
@@ -73,4 +76,8 @@ odools.setup({
     },
 })
 ```
+
+## Usage
+Try the command `:Odools install` to fetch the language server executable from Github as well as the
+python typesheds
 
