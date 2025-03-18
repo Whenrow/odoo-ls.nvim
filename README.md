@@ -44,7 +44,7 @@ return {
 
  2. Download the server executable from the release assets
  ```bash
- wget -O ~/.local/bin/odoo_ls_server https://github.com/odoo/odoo-ls/releases/download/0.4.0/odoo_ls_server
+ wget -O ~/.local/share/nvim/odoo/odoo_ls_server https://github.com/odoo/odoo-ls/releases/download/0.4.0/odoo_ls_server
  ```
 
  3. downloads python [typeshed](https://github.com/python/typeshed) to enrich the server with builtin python package stubs
@@ -65,7 +65,7 @@ odools.setup({
     python_path = h .. "/.pyenv/shims/python3",
 
     -- optional
-    server_path = h .. "/.local/bin/odoo_ls_server",
+    server_path = h .. "/.local/share/nvim/odoo/odoo_ls_server",
     addons = {h .. "/src/enterprise/"},
     additional_stubs = {h .. "/src/additional_stubs/", h .. "/src/typeshed/stubs"},
     root_dir = h .. "/src/", -- working directory, odoo_path if empty
