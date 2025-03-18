@@ -15,7 +15,7 @@ M.setup = function(opt)
     opt.server_path = opt.server_path or bin_path
     util.check_config(opt)
     local odoo_path = opt.odoo_path
-    opt.root = opt.root or odoo_path
+    opt.root_dir = opt.root_dir or odoo_path
     local odooConfig = {
         id = 1,
         name = "main config",
@@ -33,7 +33,7 @@ M.setup = function(opt)
             root_dir = function() return vim.fn.fnamemodify(opt.server_path, ":h") end,
             workspace_folders = {
                 {
-                    uri = function() return opt.root end,
+                    uri = function() return opt.root_dir end,
                     name = function() return "base_workspace" end,
                 },
             },
