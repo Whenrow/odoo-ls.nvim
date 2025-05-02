@@ -54,14 +54,14 @@ end
 local download_requirements = function()
     local bin_dir_path = vim.fn.stdpath('data') .. '/odoo'
     local bin_path = bin_dir_path .. '/odoo_ls_server'
-    if not util.path_exists(bin_dir_path) then
+    if vim.fn.isdirectory(bin_dir_path) == 0 then
         os.execute('mkdir -p ' .. bin_dir_path)
     end
     vim.cmd.LspStop('odools')
     download("https://github.com/odoo/odoo-ls/releases/download/" .. command.target .. "/odoo_ls_server", bin_path, 'file')
     if vim.fn.executable('git') == 1 then
         local path = bin_dir_path .. '/typeshed'
-        if not util.path_exists(path) then
+        if vim.fn.isdirectory(path) == 0 then
             download('https://github.com/python/typeshed.git', path, 'repo')
         else
             print("typeshed already downloaded")

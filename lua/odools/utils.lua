@@ -1,13 +1,9 @@
 local util = {}
 
-util.path_exists = function(file)
-    return vim.uv.fs_stat(file)
-end
-
 util.get_server_path = function()
     local bin_dir_path = vim.fn.stdpath('data') .. '/odoo'
     local bin_path = bin_dir_path .. '/odoo_ls_server'
-    if not util.path_exists(bin_path) then
+    if vim.fn.filereadable(bin_path) == 0 then
         vim.api.nvim_out_write("[Odools] You should download the server executable\n")
     end
     return bin_path
@@ -20,13 +16,13 @@ util.check_config = function(conf)
         vim.api.nvim_err_writeln("You should give a minimal configuration")
     end
 
-    if not conf.odoo_path or type(conf.odoo_path) ~= 'string' or not util.path_exists(conf.odoo_path) then
+    if not conf.odoo_path or type(conf.odoo_path) ~= 'string' or not vim.fn.isdirectory(conf.odoo_path) == 1 then
         vim.api.nvim_err_writeln("You should give a valid odoo path")
 end
-    if not conf.python_path or type(conf.python_path) ~= 'string' or not util.path_exists(conf.python_path) then
+    if not conf.python_path or type(conf.python_path) ~= 'string' or not vim.fn.filereadable(conf.python_path) == 1 then
         vim.api.nvim_err_writeln("You should give a valid python path")
     end
-    if not conf.server_path or type(conf.server_path) ~= 'string' or not util.path_exists(conf.server_path) then
+    if not conf.server_path or type(conf.server_path) ~= 'string' or not vim.fn.filereadable(conf.server_path) == 1 then
         vim.api.nvim_err_writeln("You should give a valid server path or download it")
     end
 end
