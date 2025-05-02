@@ -10,9 +10,8 @@ end
 
 M.setup = function(opt)
     opt = opt or {}
-    local bin_path = util.get_server_path()
     opt.python_path = opt.python_path or '/usr/bin/python3'
-    opt.server_path = opt.server_path or bin_path
+    opt.server_path = opt.server_path or util.get_server_path()
     util.check_config(opt)
     local odoo_path = opt.odoo_path
     opt.root_dir = opt.root_dir or odoo_path
